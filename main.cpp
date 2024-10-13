@@ -27,6 +27,11 @@ class Goat
 
         // Parametrized constructor
         Goat(int a, string n, string c) : age(a), name(n), color(c) {}
+
+        // getters
+        string getName() const { return name; }
+        string getColor() const { return color; }
+        int getAge() const { return age; }
 };
 
 class DoublyLinkedList
@@ -37,12 +42,7 @@ class DoublyLinkedList
             Goat data;
             Node* prev;
             Node* next;
-            Node(int val, Node* p = nullptr, Node* n = nullptr)
-            {
-                data = val;
-                prev = p;
-                next = n;
-            }
+            Node(Goat val, Node* p = nullptr, Node* n = nullptr) : data(val), prev(p), next(n) {}
         };
 
         Node* head;
@@ -51,7 +51,7 @@ class DoublyLinkedList
         // constructor
         DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-        void push_back(int value)
+        void push_back(Goat value)
         {
             Node* newNode = new Node(value);
             if (!tail) // if there is no tail, the list is empty
@@ -64,7 +64,7 @@ class DoublyLinkedList
             }
         }
 
-        void push_front(int value)
+        void push_front(Goat value)
         {
             Node* newNode = new Node(value);
             if (!head) // if there's no head, the list is empty
@@ -77,7 +77,7 @@ class DoublyLinkedList
             }
         }
 
-        void insert_after(int value, int position)
+        void insert_after(Goat value, int position)
         {
             if (position < 0)
             {
@@ -141,7 +141,7 @@ class DoublyLinkedList
             if (!current) return;
             while (current)
             {
-                cout << current->data << " ";
+                cout << current->data.getName() << " (" << current->data.getColor() << ", " << current->data.getAge() << ")\n";
                 current = current->next;
             }
             cout << endl;
@@ -153,7 +153,7 @@ class DoublyLinkedList
             if (!current) return;
             while (current)
             {
-                cout << current->data << " ";
+                cout << current->data.getName() << " (" << current->data.getColor() << ", " << current->data.getAge() << ")\n";
                 current = current->prev;
             }
             cout << endl;
@@ -173,11 +173,15 @@ class DoublyLinkedList
 // Driver program
 int main()
 {
+    srand(time(0));
+
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS;
+    int size = rand() % 16 + 5;
 
     for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR - MIN_NR + 1) + MIN_NR);
+    {
+        Goat randomGoat
+    }
     cout << "List forward: ";
     list.print();
 
