@@ -2,12 +2,6 @@
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-const string NAMES[15] = {"Billy", "Nanny", "Buttercup", "Daisy", "Clover", "Jasper",
-                          "Ivy", "Willow", "Maple", "Fern", "Sage", "Olive", "Hazel",
-                          "Aspen", "Birch"};
-const string COLORS[15] = {"White", "Black", "Brown", "Grey", "Spotted", "Piebald",
-                           "Golden", "Pinto", "Roan", "Red", "Cream", "Silver", "Blue",
-                           "Orange", "Green"};
 
 class Goat
 {
@@ -15,6 +9,13 @@ class Goat
         int age;
         string name;
         string color;
+        const string NAMES[15] = {"Billy", "Nanny", "Buttercup", "Daisy", "Clover", "Jasper",
+                                  "Ivy", "Willow", "Maple", "Fern", "Sage", "Olive", "Hazel",
+                                  "Aspen", "Birch"};
+        const string COLORS[15] = {"White", "Black", "Brown", "Grey", "Spotted", "Piebald",
+                                   "Golden", "Pinto", "Roan", "Red", "Cream", "Silver", "Blue",
+                                   "Orange", "Green"};
+
     public:
         // Default constructor
         Goat()
@@ -25,7 +26,7 @@ class Goat
         }
 
         // Parametrized constructor
-        Goat(int a, string n, string c) : age(a),
+        Goat(int a, string n, string c) : age(a), name(n), color(c) {}
 };
 
 class DoublyLinkedList
@@ -33,7 +34,7 @@ class DoublyLinkedList
     private:
         struct Node
         {
-            int data;
+            Goat data;
             Node* prev;
             Node* next;
             Node(int val, Node* p = nullptr, Node* n = nullptr)
