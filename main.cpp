@@ -1,7 +1,10 @@
+/***************************************************************************
+* COMSC-210 | Lab 21 | Grant Luo
+* Editor: CLion
+* Compiler: Apple clang version 16.0.0
+*/
 #include <iostream>
 using namespace std;
-
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class Goat
 {
@@ -77,64 +80,6 @@ class DoublyLinkedList
             }
         }
 
-        void insert_after(Goat value, int position)
-        {
-            if (position < 0)
-            {
-                cout << "Position must be >= 0." << endl;
-                return;
-            }
-
-            Node* newNode = new Node(value);
-            if (!head)
-            {
-                head = tail = newNode;
-                return;
-            }
-
-            Node* temp = head;
-            for (int i = 0; i < position && temp; ++i)
-                temp = temp->next;
-
-            if (!temp)
-            {
-                cout << "Position exceeds list size. Node not inserted.\n";
-                delete newNode;
-                return;
-            }
-
-            newNode->next = temp->next;
-            newNode->prev = temp;
-            if (temp->next)
-                temp->next->prev = newNode;
-            else
-                tail = newNode; // Inserting at the end
-            temp->next = newNode;
-        }
-
-        void delete_node(int value)
-        {
-            if (!head) return; // Empty list
-
-            Node* temp = head;
-            while (temp && temp->data != value)
-                temp = temp->next;
-
-            if (!temp) return; // Value not found
-
-            if (temp->prev)
-                temp->prev->next = temp->next;
-            else
-                head = temp->next; // Deleting the head
-
-            if (temp->next)
-                temp->next->prev = temp->prev;
-            else
-                tail = temp->prev; // Deleting the tail
-
-            delete temp;
-        }
-
         void print()
         {
             Node* current = head;
@@ -170,28 +115,42 @@ class DoublyLinkedList
         }
 };
 
+void print_id(string const& lab_desc);
+
 // Driver program
 int main()
 {
+    print_id("Goat Herd Manager 3000");
+
     srand(time(0));
 
     DoublyLinkedList list;
-    int size = rand() % 16 + 5;
+    int size = rand() % 16 + 5; // A random size between 5 and 20
 
     for (int i = 0; i < size; ++i)
     {
-        Goat randomGoat
+        Goat randomGoat;
+        list.push_back(randomGoat);
     }
-    cout << "List forward: ";
+    cout << "List forward:\n";
     list.print();
 
-    cout << "List backward: ";
+    cout << "List backward:\n";
     list.print_reverse();
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
-    cout << "List forward: ";
+    cout << "List forward:\n";
     list.print();
 
     return 0;
+}
+
+void print_id(string const& lab_desc)
+{
+    cout << "\nCOMSC210 | Grant Luo | " << lab_desc << "\n";
+    cout << "Editor: CLion\n";
+    cout << "Compiler: Apple clang version 16.0.0\n";
+    cout << "File: " << __FILE__ << "\n";
+    cout << "Compiled: " << __DATE__ << " at " << __TIME__ << "\n\n";
 }
