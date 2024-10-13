@@ -2,6 +2,31 @@
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const string NAMES[15] = {"Billy", "Nanny", "Buttercup", "Daisy", "Clover", "Jasper",
+                          "Ivy", "Willow", "Maple", "Fern", "Sage", "Olive", "Hazel",
+                          "Aspen", "Birch"};
+const string COLORS[15] = {"White", "Black", "Brown", "Grey", "Spotted", "Piebald",
+                           "Golden", "Pinto", "Roan", "Red", "Cream", "Silver", "Blue",
+                           "Orange", "Green"};
+
+class Goat
+{
+    private:
+        int age;
+        string name;
+        string color;
+    public:
+        // Default constructor
+        Goat()
+        {
+            age = rand() % 20  + 1;
+            name = NAMES[rand() % 15];
+            color = COLORS[rand() % 15];
+        }
+
+        // Parametrized constructor
+        Goat(int a, string n, string c) : age(a),
+};
 
 class DoublyLinkedList
 {
@@ -29,7 +54,7 @@ class DoublyLinkedList
         {
             Node* newNode = new Node(value);
             if (!tail) // if there is no tail, the list is empty
-                head = tail = nullptr;
+                head = tail = newNode;
             else
             {
                 tail->next = newNode;
@@ -147,8 +172,6 @@ class DoublyLinkedList
 // Driver program
 int main()
 {
-
-
     DoublyLinkedList list;
     int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS;
 
